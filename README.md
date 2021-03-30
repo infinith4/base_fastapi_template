@@ -6,5 +6,5 @@ pipenv install uvicorn
 ```
 
 ```
-uvicorn src/app:app
+uvicorn main:app
 ```
