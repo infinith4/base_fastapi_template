@@ -1,5 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.utils import get_openapi
+from fastapi.templating import Jinja2Templates
 
 # 各タグの説明
 tags_metadata = [
@@ -26,6 +29,18 @@ app = FastAPI(
     redoc_url="/api/v1/redoc",
     openapi_url="/api/v1/openapi.json",
     )
+
+templates = Jinja2Templates(directory="src/templates")
+
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
+@app.get(
+    "/index",
+    tags=["root"],
+    response_class=HTMLResponse
+    )
+async def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request, "id": 1})
 
 
 @app.get(

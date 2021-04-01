@@ -9,6 +9,8 @@ verify_ssl = true
 requests = "*"
 fastapi = "*"
 uvicorn = "*"
+jinja2 = "*"
+aiofiles = "*"
 
 [requires]
 python_version = "3.9"
