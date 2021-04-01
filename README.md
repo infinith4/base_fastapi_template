@@ -22,3 +22,5 @@ pipenv install jinja2
 pipenv install aiofiles
 ```
 
+
+https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-environment

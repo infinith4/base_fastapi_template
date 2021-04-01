@@ -5,8 +5,15 @@
             "name": "Python: FastAPI",
             "type": "python",
             "request": "launch",
-            "program": "src/run.py",
-            "console": "integratedTerminal",
+            "module": "uvicorn",
+            "args": [
+                "src.startup:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8001"
+            ],
             "jinja": true,
             "justMyCode": false
         }
