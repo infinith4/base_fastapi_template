@@ -48,3 +48,13 @@ app.mount("/static", StaticFiles(directory="src/static"), name="static")
     )
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "id": 1})
+
+@app.get(
+    "/admin",
+    tags=["admin"],
+    response_class=HTMLResponse
+    )
+async def admin(request: Request):
+    return templates.TemplateResponse('admin.html',
+                                      {'request': request,
+                                       'username': 'admin'})
