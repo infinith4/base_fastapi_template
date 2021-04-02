@@ -3,32 +3,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.utils import get_openapi
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
 
-from pydantic import BaseModel
-
-import databases
-import sqlalchemy
-# 接続したいDBの基本情報を設定
-user_name = "docker" #"root"
-password = "docker" # "root"
-host = "127.0.0.1"  # docker-composeで定義したMySQLのサービス名
-database_name = "test_database"
-
-DATABASE_URL = 'mysql://%s:%s@%s/%s?charset=utf8' % (
-    user_name,
-    password,
-    host,
-    database_name,
-)
-
-# DBとの接続
-engine = sqlalchemy.create_engine(
-    DATABASE_URL, encoding="utf-8", echo=True
-)
-
-database = databases.Database(DATABASE_URL)
-
-sql_metadata = sqlalchemy.MetaData()
+from db_connection.mysql import session, database  # DBと接続するためのセッション
+from models.user import UserTable, User  # 今回使うモデルをインポート
 
 app = FastAPI(
     title='FastAPIでつくるtoDoアプリケーション',
@@ -36,18 +14,14 @@ app = FastAPI(
     version='0.9 beta'
 )
 
-sql_metadata.create_all(engine)
-
-
-class NoteIn(BaseModel):
-    text: str
-    completed: bool
-
-
-class Note(BaseModel):
-    id: int
-    text: str
-    completed: bool
+# CORSを回避するために設定
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup():
@@ -86,6 +60,13 @@ app = FastAPI(
 templates = Jinja2Templates(directory="src/templates")
 
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
+# ----------APIの実装------------
+# テーブルにいる全ユーザ情報を取得 GET
+@app.get("/users")
+def read_users():
+    users = session.query(UserTable).all()
+    return users
 
 @app.get(
     "/index",
