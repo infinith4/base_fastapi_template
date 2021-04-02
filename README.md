@@ -85,3 +85,5 @@ brew install mysql
 ```
 mysql -u docker -h 127.0.0.1 -D test_database -p
 ```
+
+https://zenn.dev/yusugomori/articles/a3d5dc8baf9e386a58e5
