@@ -4,17 +4,15 @@ from pydantic import BaseModel
 import db_connection
 
 # userテーブルのモデルUserTableを定義
-class UserTable(db_connection.my_sql.Base):
-    __tablename__ = 'user'
+class TestTable(db_connection.my_sql.Base):
+    __tablename__ = 'test_table'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(30), nullable=False)
-    age = Column(Integer)
+    name = Column(String(20), nullable=False)
 
 # POSTやPUTのとき受け取るRequest Bodyのモデルを定義
-class User(BaseModel):
+class Test(BaseModel):
     id: int
     name: str
-    age: int
 
 def main():
     # テーブルが存在しなければ、テーブルを作成

@@ -5,7 +5,10 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
 
+import db_connection
+
 from models.user import UserTable, User  # 今回使うモデルをインポート
+from models.test_table import TestTable, Test  # 今回使うモデルをインポート
 
 app = FastAPI(
     title='FastAPIでつくるtoDoアプリケーション',
@@ -24,11 +27,11 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
-    await database.connect()
+    await db_connection.my_sql.database.connect()
 
 @app.on_event("shutdown")
 async def shutdown():
-    await database.disconnect()
+    await db_connection.my_sql.database.disconnect()
 
 # 各タグの説明
 tags_metadata = [
@@ -62,9 +65,14 @@ app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 # ----------APIの実装------------
 # テーブルにいる全ユーザ情報を取得 GET
+@app.get("/tests")
+def read_tests():
+    tests = db_connection.my_sql.session.query(TestTable).all()
+    return tests
+
 @app.get("/users")
 def read_users():
-    users = session.query(UserTable).all()
+    users = db_connection.my_sql.session.query(UserTable).all()
     return users
 
 @app.get(

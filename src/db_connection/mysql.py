@@ -44,4 +44,5 @@ class MySql:
         # modelで使用する
         self.Base = declarative_base()
         # DB接続用のセッションクラス、インスタンスが作成されると接続する
-        self.Base.query = session.query_property()
+        self.Base.query = self.session.query_property()
+
