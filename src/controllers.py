@@ -70,11 +70,6 @@ def read_tests():
     tests = db_connection.my_sql.session.query(TestTable).all()
     return tests
 
-@app.get("/users")
-def read_users():
-    users = db_connection.my_sql.session.query(UserTable).all()
-    return users
-
 @app.get(
     "/index",
     tags=["root"],
@@ -82,13 +77,3 @@ def read_users():
     )
 async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, "id": 1})
-
-@app.get(
-    "/admin",
-    tags=["admin"],
-    response_class=HTMLResponse
-    )
-async def admin(request: Request):
-    return templates.TemplateResponse('admin.html',
-                                      {'request': request,
-                                       'username': 'admin'})

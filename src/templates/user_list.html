@@ -1,0 +1,10 @@
+{% extends "_layout.html" %}
+{% block content %}
+<br>
+<h2>Administrator page</h2>
+<hr>
+{% for user in users %}
+<p>{{ user.name }} こんにちは</p>
+{% endfor %}
+ 
+{% endblock %}
