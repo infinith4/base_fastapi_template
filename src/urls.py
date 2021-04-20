@@ -1,7 +1,6 @@
-from controllers import *
-from admin_controller import *
-from user_controller import *
-
+from controllers._base_controller import app
+from controllers.admin_controller import *
+from controllers.user_controller import *
 
 def custom_openapi():
     if app.openapi_schema:

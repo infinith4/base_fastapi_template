@@ -10,7 +10,7 @@ import db_connection
 from models.user import UserTable, User  # 今回使うモデルをインポート
 from models.test_table import TestTable, Test  # 今回使うモデルをインポート
 
-from controllers import app, templates
+from controllers._base_controller import app, templates
 
 @app.get(
     "/admin",

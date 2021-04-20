@@ -16,7 +16,7 @@ databases = {extras = ["mysql"], version = "*"}
 aiomysql = "*"
 pymysql = "*"
 mysql-connector-python = "*"
-mysqlclient = "*"
+# mysqlclient = "*"
 
 [requires]
 python_version = "3.9"

@@ -44,6 +44,16 @@ pipenv install databases[mysql]
 ```
 
 pipenv install mysqlclient でエラーになるとき。
+
+## ubuntu
+
+```
+sudo apt install -y mysql-server
+sudo apt install -y libmysqlclient-dev
+```
+
+## mac
+
 以下を行う。
 
 ```
