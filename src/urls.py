@@ -1,4 +1,5 @@
 from controllers._base_controller import app
+from controllers.index_controller import *
 from controllers.admin_controller import *
 from controllers.user_controller import *
 
