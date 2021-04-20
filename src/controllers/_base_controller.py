@@ -4,12 +4,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.utils import get_openapi
 from fastapi.templating import Jinja2Templates
 
-app = FastAPI(
-    title='base fastapi template',
-    description='base fastapi template',
-    version='0.0.0'
-)
-
 # 各タグの説明
 tags_metadata = [
     {
@@ -27,9 +21,9 @@ tags_metadata = [
 ]
 
 app = FastAPI(
-    title="FastAPI Sample Project",
-    description="This is a very fancy project, with auto docs for the API and everything",
-    version="1.0.1",
+    title='base fastapi template',
+    description='base fastapi template',
+    version='0.0.0',
     openapi_tags=tags_metadata,
     docs_url="/api/v1/docs",
     redoc_url="/api/v1/redoc",

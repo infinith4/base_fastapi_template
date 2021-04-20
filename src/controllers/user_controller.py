@@ -17,6 +17,8 @@ from controllers._base_controller import app, templates
     tags=["user"],
     response_class=HTMLResponse)
 def users(request: Request):
+
+    db_connection.my_sql.Base.metadata.create_all(bind=db_connection.my_sql.ENGINE)
     users = db_connection.my_sql.session.query(UserTable).all()
     return templates.TemplateResponse('user_list.html',
                                       {'request': request,
