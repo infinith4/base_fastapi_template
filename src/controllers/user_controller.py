@@ -17,8 +17,21 @@ from controllers._base_controller import app, templates
     tags=["user"],
     response_class=HTMLResponse)
 def users(request: Request):
+    users = db_connection.my_sql.session.query(UserTable).all()
+    return templates.TemplateResponse('user_list.html',
+                                      {'request': request,
+                                       'users': users})
 
-    db_connection.my_sql.Base.metadata.create_all(bind=db_connection.my_sql.ENGINE)
+@app.post(
+    "/user",
+    tags=["user"],
+    response_class=HTMLResponse)
+def user(request: Request):
+    user_data = UserTable()
+    user_data.name = '太郎5'
+    db_connection.my_sql.session.add(user_data)
+    db_connection.my_sql.session.commit()
+
     users = db_connection.my_sql.session.query(UserTable).all()
     return templates.TemplateResponse('user_list.html',
                                       {'request': request,
