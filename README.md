@@ -101,3 +101,14 @@ mysql -u docker -h 127.0.0.1 -D test_database -p
 https://zenn.dev/yusugomori/articles/a3d5dc8baf9e386a58e5
 
 https://qiita.com/satto_sann/items/4fbc1a4e2b33fa2237d2
+
+
+### firestore
+
+https://firebase.google.com/docs/firestore/quickstart#python_1
+https://console.firebase.google.com/u/0/project/bnode-2cd0d/authentication/providers
+https://googleapis.dev/python/firestore/latest/index.html
+https://qiita.com/yusukeito58/items/c77feaa25fbbe37e9953
+
+pipenv install firebase-admin
+pipenv install google-cloud-firestore

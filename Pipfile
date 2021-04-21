@@ -17,6 +17,8 @@ aiomysql = "*"
 pymysql = "*"
 mysql-connector-python = "*"
 # mysqlclient = "*"
+firebase-admin = "*"
+google-cloud-firestore = "*"
 
 [requires]
 python_version = "3.9"
