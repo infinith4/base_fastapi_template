@@ -110,5 +110,9 @@ https://console.firebase.google.com/u/0/project/bnode-2cd0d/authentication/provi
 https://googleapis.dev/python/firestore/latest/index.html
 https://qiita.com/yusukeito58/items/c77feaa25fbbe37e9953
 
+add data
+
+https://firebase.google.com/docs/firestore/manage-data/add-data
+
 pipenv install firebase-admin
 pipenv install google-cloud-firestore
