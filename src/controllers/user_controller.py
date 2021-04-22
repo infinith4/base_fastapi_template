@@ -27,6 +27,9 @@ def users(request: Request):
     tags=["user"],
     response_class=HTMLResponse)
 def user(user_id: str, request: Request):
+
+    # テーブルが存在しなければ、テーブルを作成
+    db_connection.my_sql.Base.metadata.create_all(bind=db_connection.my_sql.ENGINE)
     user_data = UserTable()
     user_data.name = f'太郎{user_id}'
     db_connection.my_sql.session.add(user_data)
